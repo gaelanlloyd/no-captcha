@@ -240,10 +240,10 @@ function wr_no_captcha_get_exlude_ips() {
 
 function wr_no_captcha_get_client_ip() {
 	$ipaddress = '';
-	if ( isset( $_SERVER['HTTP_CLIENT_IP'] ) ) {
-		$ipaddress = $_SERVER['HTTP_CLIENT_IP'];
-	} elseif ( get_option( 'wr_no_captcha_exlude_ips_forwarded_for' ) === '1' && isset( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ) {
+	if ( get_option( 'wr_no_captcha_exlude_ips_forwarded_for' ) === '1' && isset( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ) {
 		$ipaddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
+	} elseif ( isset( $_SERVER['HTTP_CLIENT_IP'] ) ) {
+		$ipaddress = $_SERVER['HTTP_CLIENT_IP'];
 	} elseif ( isset( $_SERVER['REMOTE_ADDR'] ) ) {
 		$ipaddress = $_SERVER['REMOTE_ADDR'];
 	} else {
